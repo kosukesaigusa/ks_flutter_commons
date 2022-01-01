@@ -94,6 +94,15 @@ String dateString({
   return '${DateFormat('yyyy-MM-dd').format(dateTime)} (${japaneseWeekDay(year, month, day)})';
 }
 
+/// yyyy-MM-dd (曜) の形式の文字列を返す
+String toIsoStringWithWeekDay({DateTime? dateTime, String placeHolder = ''}) {
+  if (dateTime == null) {
+    return placeHolder;
+  }
+  return '${DateFormat('yyyy-MM-dd').format(dateTime)} '
+      '(${japaneseWeekDay(dateTime.year, dateTime.month, dateTime.day)})';
+}
+
 /// 24 時間制の時刻だけを返す
 String timeString(DateTime? dateTime) {
   return dateTime == null ? '' : '${DateFormat.Hm().format(dateTime)}';
