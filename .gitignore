@@ -27,3 +27,7 @@
 .dart_tool/
 .packages
 build/
+
+# Auto generated
+.flutter-plugins
+.flutter-plugins-dependencies
