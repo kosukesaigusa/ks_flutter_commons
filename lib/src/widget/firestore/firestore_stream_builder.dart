@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class DocumentStreamBuilder<T> extends StatelessWidget {
+class DocumentStreamBuilder<T, A> extends StatelessWidget {
   const DocumentStreamBuilder({
     required this.documentStream,
-    required this.child,
+    required this.builder,
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
+    this.args,
   });
   final Stream<T?> documentStream;
-  final Widget Function(BuildContext context, T data) child;
+  final Widget Function(BuildContext context, T data, {A? args}) builder;
   final Widget waitingWidget;
   final Widget noDataWidget;
+  final A? args;
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +26,25 @@ class DocumentStreamBuilder<T> extends StatelessWidget {
           return const SizedBox();
         }
         final data = snapshot.data as T;
-        return child(context, data);
+        return builder(context, data, args: args);
       },
     );
   }
 }
 
-class CollectionStreamBuilder<T> extends StatelessWidget {
+class CollectionStreamBuilder<T, A> extends StatelessWidget {
   const CollectionStreamBuilder({
     required this.collectionStream,
-    required this.child,
+    required this.builder,
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
+    this.args,
   });
   final Stream<List<T>> collectionStream;
-  final Widget Function(BuildContext context, List<T> data) child;
+  final Widget Function(BuildContext context, List<T> data, {A? args}) builder;
   final Widget waitingWidget;
   final Widget noDataWidget;
+  final A? args;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class CollectionStreamBuilder<T> extends StatelessWidget {
           return const SizedBox();
         }
         final data = snapshot.data!;
-        return child(context, data);
+        return builder(context, data, args: args);
       },
     );
   }
