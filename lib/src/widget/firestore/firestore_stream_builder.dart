@@ -7,14 +7,14 @@ class DocumentStreamBuilder<T> extends StatelessWidget {
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
   });
-  final Stream<T>? documentStream;
+  final Stream<T?> documentStream;
   final Widget Function(BuildContext context, T data) child;
   final Widget waitingWidget;
   final Widget noDataWidget;
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<T>(
+    return StreamBuilder<T?>(
       stream: documentStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
