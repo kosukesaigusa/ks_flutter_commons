@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class DocumentStreamBuilder<T> extends StatelessWidget {
   const DocumentStreamBuilder({
-    required this.data,
     required this.documentStream,
     required this.child,
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
   });
-  final T data;
   final Stream<T>? documentStream;
   final Widget Function(BuildContext context, T data) child;
   final Widget waitingWidget;
@@ -34,13 +32,11 @@ class DocumentStreamBuilder<T> extends StatelessWidget {
 
 class CollectionStreamBuilder<T> extends StatelessWidget {
   const CollectionStreamBuilder({
-    required this.data,
     required this.collectionStream,
     required this.child,
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
   });
-  final T data;
   final Stream<List<T>> collectionStream;
   final Widget Function(BuildContext context, List<T> data) child;
   final Widget waitingWidget;
