@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class DocumentStreamBuilder<T> extends StatelessWidget {
   const DocumentStreamBuilder({
-    required this.subscriber,
+    required this.stream,
     required this.builder,
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
   });
-  final Stream<T?> subscriber;
+  final Stream<T?> stream;
   final Widget Function(BuildContext context, T data) builder;
   final Widget waitingWidget;
   final Widget noDataWidget;
@@ -15,13 +15,13 @@ class DocumentStreamBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<T?>(
-      stream: subscriber,
+      stream: stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const SizedBox();
+          return waitingWidget;
         }
         if (!snapshot.hasData) {
-          return const SizedBox();
+          return noDataWidget;
         }
         final data = snapshot.data as T;
         return builder(context, data);
@@ -32,12 +32,12 @@ class DocumentStreamBuilder<T> extends StatelessWidget {
 
 class CollectionStreamBuilder<T> extends StatelessWidget {
   const CollectionStreamBuilder({
-    required this.subscriber,
+    required this.stream,
     required this.builder,
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
   });
-  final Stream<List<T>> subscriber;
+  final Stream<List<T>> stream;
   final Widget Function(BuildContext context, List<T> data) builder;
   final Widget waitingWidget;
   final Widget noDataWidget;
@@ -45,13 +45,13 @@ class CollectionStreamBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<T>>(
-      stream: subscriber,
+      stream: stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const SizedBox();
+          return waitingWidget;
         }
         if (!snapshot.hasData) {
-          return const SizedBox();
+          return noDataWidget;
         }
         final data = snapshot.data!;
         return builder(context, data);
