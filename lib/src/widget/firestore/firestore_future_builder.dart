@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class DocumentFutureBuilder<T> extends StatelessWidget {
   const DocumentFutureBuilder({
-    required this.fetchDocument,
+    required this.fetcher,
     required this.builder,
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
   });
-  final Future<T?> fetchDocument;
+  final Future<T?> fetcher;
   final Widget Function(BuildContext context, T data) builder;
   final Widget waitingWidget;
   final Widget noDataWidget;
@@ -15,7 +15,7 @@ class DocumentFutureBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<T?>(
-      future: fetchDocument,
+      future: fetcher,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const SizedBox();
@@ -32,12 +32,12 @@ class DocumentFutureBuilder<T> extends StatelessWidget {
 
 class CollectionFutureBuilder<T> extends StatelessWidget {
   const CollectionFutureBuilder({
-    required this.fetchCollection,
+    required this.fetcher,
     required this.builder,
     this.waitingWidget = const SizedBox(),
     this.noDataWidget = const SizedBox(),
   });
-  final Future<List<T>> fetchCollection;
+  final Future<List<T>> fetcher;
   final Widget Function(BuildContext context, List<T> data) builder;
   final Widget waitingWidget;
   final Widget noDataWidget;
@@ -45,7 +45,7 @@ class CollectionFutureBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<T>>(
-      future: fetchCollection,
+      future: fetcher,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const SizedBox();
