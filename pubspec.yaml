@@ -8,16 +8,17 @@ environment:
   flutter: '>=1.17.0'
 
 dependencies:
-  cloud_firestore: ^3.1.5
-  cloud_functions: ^3.2.4
-  connectivity_plus: ^2.1.0
-  firebase_analytics: ^9.0.4
-  firebase_auth: ^3.3.4
-  firebase_core: ^1.10.6
+  cloud_firestore: ^3.1.6
+  cloud_functions: ^3.2.5
+  connectivity_plus: ^2.2.0
+  firebase_analytics: ^9.0.5
+  firebase_auth: ^3.3.5
+  firebase_core: ^1.11.0
   firebase_storage: ^10.2.4
   flutter:
     sdk: flutter
   intl: ^0.17.0
+  json_annotation: ^4.4.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0
