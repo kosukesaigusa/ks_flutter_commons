@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 class AuthStateStreamBuilder extends StatelessWidget {
   const AuthStateStreamBuilder({
     Key? key,
-    required this.signedInPage,
+    required this.builder,
     this.waitingWidget = const SizedBox(),
-    this.noDataWidget = const SizedBox(),
+    this.notSignedInWidget = const SizedBox(),
   }) : super(key: key);
 
-  final Widget signedInPage;
+  final Widget Function(BuildContext context) builder;
   final Widget waitingWidget;
-  final Widget noDataWidget;
+  final Widget notSignedInWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,12 @@ class AuthStateStreamBuilder extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const SizedBox();
+          return waitingWidget;
         }
         if (!snapshot.hasData) {
-          return const SizedBox();
+          return notSignedInWidget;
         }
-        return signedInPage;
+        return builder(context);
       },
     );
   }
