@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-/// StreamBuidler の stream プロパティに Firebase Auth の
+/// StreamBuilder の stream プロパティに Firebase Auth の
 /// authStateChanges() メソッドを指定して、ユーザーのサインイン状態に
 /// もとづいた画面を返すウイジェット。
 class AuthStateStreamBuilder extends StatelessWidget {
