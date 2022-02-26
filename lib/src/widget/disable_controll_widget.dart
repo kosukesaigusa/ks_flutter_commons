@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 /// Stack で重ねて下のウィジェットを操作不可能にするためのウィジェット
-class DisableControllWidget extends StatelessWidget {
-  const DisableControllWidget({
+class DisableControlWidget extends StatelessWidget {
+  const DisableControlWidget({
     Key? key,
     this.filterColor = Colors.black38,
     this.text,
